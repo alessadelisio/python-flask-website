@@ -1,4 +1,7 @@
 flask==3.0.1 ; python_version >= "3.10" and python_version < "3.11"
 flask-vite==0.3.7 ; python_version >= "3.10" and python_version < "3.11"
-gunicorn==21.2.0 ; python_version >= "3.10" and python_version < "3.11"
+hypercorn==0.13.2 ; python_version >= "3.10" and python_version < "3.11"
 werkzeug==3.0.3 ; python_version >= "3.10" and python_version < "3.11"
+asgiref==3.6.0 ; python_version >= "3.10" and python_version < "3.11"
+starlette==0.23.0 ; python_version >= "3.10" and python_version < "3.11"
+google-cloud-storage==2.5.0

@@ -66,5 +66,5 @@ test:     ## Run tests and coverage.
 
 
 .PHONY: Run
-run:      ## Run uvicorn
-	APP_ENVIRONMENT=local gunicorn --workers=1 --bind=0.0.0.0:8080 --log-level DEBUG --threads 8 --timeout 0 src.app:app --reload
+run:      ## Run hypercorn
+	APP_ENVIRONMENT=local hypercorn --workers=1 --bind=0.0.0.0:8080 --log-level DEBUG --reload src.app:asgi_app

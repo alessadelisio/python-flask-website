@@ -17,4 +17,4 @@ RUN pip install -r requirements.txt
 EXPOSE ${PORT}
 
 
-CMD gunicorn --bind :${PORT} --workers 1 --threads 8 --timeout 0 src.app:app
+CMD hypercorn src.app:asgi_app --bind 0.0.0.0:${PORT} --workers 1 --log-level debug --reload --keep-alive 75

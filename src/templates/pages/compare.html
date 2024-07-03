@@ -6,19 +6,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div id="left-text">MAKE SIMPLE</div>
-    <div id="right-box">
+    <nav id="bottom-bar">
+        <button onclick="location.href='{{ url_for('index') }}'">Home</button>
+        <div id="make-simple">MAKE SIMPLE</div>
+    </nav>
+    <div id="upload-box">
         <form name="formulario" method="post" enctype="multipart/form-data" action="/upload">
             <p>CSV File: <br><input type="file" name="csvFile" id="file" accept=".csv"></p>
             <p>ZIP File: <br><input type="file" name="zipFile" id="folder" accept=".zip"></p>
             <button type="submit">Subir archivos</button>
         </form>
         <img
-            id="photo-image"
+            id="photo-image-load"
             width="300"
             title="Imagen persona en cuerda floja" 
             src="{{ url_for('static', filename='assets/img/load.jpg') }}" 
-            alt="Una imagen en blanco y negro de una persona con una bara sobre una cuerda floja."
+            alt="Una imagen en blanco y negro de una persona en crecimiento."
         >
     </div>
 </body>

@@ -8,6 +8,8 @@ CLOUDRUN_URL_OUTPUT_PATH=$(gcloud run deploy $GCP_APPLICATION \
   --platform managed \
   --allow-unauthenticated \
   --memory 512M \
+  --use-http2 \
+  --timeout=500 \
   --format='value(status.url)')
 
 echo "CLOUDRUN_URL_OUTPUT_PATH=$CLOUDRUN_URL_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
