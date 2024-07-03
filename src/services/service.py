@@ -1,10 +1,8 @@
 import csv
 import zipfile
+from io import BytesIO
 
-from werkzeug.datastructures import FileStorage
-
-
-def files_to_dict(csv_file: FileStorage) -> dict:
+def files_to_dict(csv_data: bytes) -> dict:
     """
     This function converts a CSV file data to a dictionary.
 
@@ -23,26 +21,26 @@ def files_to_dict(csv_file: FileStorage) -> dict:
     csv_dict = {}
 
     try:
-        csv_stream = csv_file.stream.read().decode("utf-8")
+        csv_stream = csv_data.decode("utf-8")
         csv_reader = csv.reader(csv_stream.splitlines(), delimiter=";")
 
-        next(csv_reader)  # Salta la primera fila del documento CSV.
+        next(csv_reader) # Skip the first row of the CSV document.
 
     except Exception as error:
         raise Exception("Error: csv_file could not be read.") from error
 
     for row in csv_reader:
-        # Asumir que la columna 1 es la key y la columna 2 es el value
+        # Assume column 1 is the key and column 2 is the value.
         key = row[0]
         value = row[1]
 
-        # Añadir los key-value al diccionario
+        # Add the key-values ​​to the dictionary  . 
         csv_dict[key] = value
 
     return csv_dict
 
 
-def unzip_files(zip_file: FileStorage) -> list:
+def unzip_files(zip_data: bytes) -> list:
     """
     This function processes the content of a ZIP object.
 
@@ -61,14 +59,13 @@ def unzip_files(zip_file: FileStorage) -> list:
     zip_list_files = []
 
     try:
-        with zipfile.ZipFile(zip_file.stream, mode="r") as my_zip:
+        with zipfile.ZipFile(BytesIO(zip_data), mode="r") as my_zip:
             zip_list_files = my_zip.namelist()
 
     except Exception as error:
         raise Exception("Error: `zip_file` could not be read.") from error
 
     return zip_list_files
-
 
 def validate_files_exists(zip_list: list, csv_dict: dict) -> dict:
     """
