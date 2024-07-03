@@ -53,12 +53,10 @@ jobs:
     environment: deployment
 
     env:
-      REGISTRY_NAME: ${{ vars.REGISTRY_NAME }}
+      REGISTRY_NAME: ${{ vars.REGISTRY_NAME }} 
       GCP_PROJECT: ${{ vars.GCP_PROJECT }}
       GCP_REPOSITORY: ${{ vars.GCP_REPOSITORY }}
-      GCP_APPLICATION: ${{ vars.GCP_APPLICATION }}
-      GCP_BUCKET_TEMPORARY: ${{ vars.GCP_BUCKET_TEMPORARY }}
-      GOOGLE_APPLICATION_CREDENTIALS: '${{ secrets.CICD_GOOGLE_CREDENTIALS }}'
+      GCP_APPLICATION: ${{ vars.GCP_APPLICATION}}
 
     needs: 
       - linter
